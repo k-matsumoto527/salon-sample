@@ -88,16 +88,38 @@
     /* ===== HERO ===== */
     .hero {
       height: 100vh;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
+      position: relative;
+      overflow: hidden;
       padding-top: 80px;
     }
 
+    .hero-image {
+      position: absolute;
+      inset: 0;
+    }
+
+    .hero-image-inner {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      object-position: right top;
+    }
+
+    .hero-image::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to right, rgba(250,248,245,0.92) 35%, rgba(250,248,245,0.4) 65%, rgba(250,248,245,0) 100%);
+    }
+
     .hero-text {
+      position: relative;
+      z-index: 1;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      height: 100%;
       padding: 80px 64px;
+      max-width: 600px;
     }
 
     .hero-tag {
@@ -151,22 +173,6 @@
     }
 
     .btn-outline:hover { background: var(--dark); color: var(--white); }
-
-    .hero-image {
-      background: var(--beige);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .hero-image-inner {
-      width: 100%; height: 100%;
-      background: linear-gradient(135deg, #e8e0d4 0%, #d4c8b8 40%, #c4b8a4 100%);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 80px;
-      color: rgba(255,255,255,0.5);
-    }
 
     .hero-scroll {
       position: absolute;
@@ -547,9 +553,9 @@
       nav { gap: 16px; }
       nav a:not(.nav-reserve) { display: none; }
 
-      .hero { grid-template-columns: 1fr; height: auto; padding-top: 70px; }
-      .hero-text { padding: 60px 24px 40px; }
-      .hero-image { height: 300px; }
+      .hero { height: 100svh; padding-top: 70px; }
+      .hero-image::after { background: linear-gradient(to bottom, rgba(250,248,245,0.85) 30%, rgba(250,248,245,0.3) 100%); }
+      .hero-text { padding: 0 24px; max-width: 100%; }
       .hero-scroll { display: none; }
 
       section { padding: 72px 24px; }
@@ -587,10 +593,13 @@
 
 <!-- HERO -->
 <section class="hero" id="top">
+  <div class="hero-image">
+    <img class="hero-image-inner" src="image/top.png" alt="hair salon Lumière">
+  </div>
   <div class="hero-text">
     <p class="hero-tag">NATURAL &amp; SIMPLE HAIR SALON</p>
     <h1 class="hero-title">
-      自然体の<br>あなたを<br>引き出す。
+      髪から始まる<br>私らしい毎日
     </h1>
     <p class="hero-sub">
       素材を活かし、暮らしに寄り添うスタイルを。<br>
@@ -601,9 +610,6 @@
       <a href="#menu" class="btn-outline">メニューを見る</a>
     </div>
     <p class="hero-scroll">SCROLL</p>
-  </div>
-  <div class="hero-image">
-    <div class="hero-image-inner">✂</div>
   </div>
 </section>
 
